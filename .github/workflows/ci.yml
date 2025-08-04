@@ -41,7 +41,7 @@ jobs:
           echo "✅ Build successful: artifact found"
 
       - name: Analyze bundle size
-        if: github.event_name == "pull_request"
+        if: github.event_name == 'pull_request'
         run: |
           echo "📊 Bundle Analysis:"
           echo "===================="
@@ -51,7 +51,7 @@ jobs:
           find dist -type f -name "*.js" -o -name "*.css" | xargs ls -lh
 
       - name: Upload artifact
-        if: github.ref == "refs/heads/main" && github.event_name == "push"
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
           name: build-artifact
