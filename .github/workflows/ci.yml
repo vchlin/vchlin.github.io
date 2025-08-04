@@ -52,7 +52,7 @@ jobs:
           du -sh dist/
           echo ""
           echo "📁 Detailed breakdown:"
-          find dist -type f -name "*.js" -o -name "*.css" | xargs ls -lh
+          find dist -type f | xargs ls -lh
 
       - name: Upload artifact
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
