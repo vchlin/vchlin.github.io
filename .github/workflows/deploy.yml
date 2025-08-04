@@ -22,6 +22,7 @@ concurrency:
 
 jobs:
   deploy:
+    name: Deploy
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
@@ -31,9 +32,20 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
+          name: build-artifact
           path: dist/
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Verify artifact
+        run: |
+          if [ ! -f "dist/index.html" ]; then
+            echo "❌ Deployment failed: index.html not found in downloaded artifact"
+            echo "Contents of dist directory:"
+            ls -la dist/
+            exit 1
+          fi
+          echo "✅ Artifact verified"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
