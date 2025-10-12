@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ['CI']
     types:
       - completed
     branches: [main]
@@ -14,8 +14,8 @@ permissions:
   pages: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -36,18 +36,18 @@ jobs:
 
       - name: Verify artifact
         run: |
-          if [ ! -f "dist/index.html" ]; then
-            echo "❌ Deployment failed: index.html not found in downloaded artifact"
-            echo "Contents of dist directory:"
+          if [ ! -f 'dist/index.html' ]; then
+            echo '❌ Deployment failed: index.html not found in downloaded artifact'
+            echo 'Contents of dist directory:'
             ls -la dist/
             exit 1
           fi
-          echo "✅ Artifact verified"
+          echo '✅ Artifact verified'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "./dist"
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
