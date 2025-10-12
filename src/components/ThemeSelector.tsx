@@ -1,4 +1,4 @@
-import { Sun, Moon, Monitor } from 'lucide-react'
+import { ComputerDesktopIcon, MoonIcon, SunIcon } from '@heroicons/react/24/outline'
 
 type Theme = 'light' | 'dark' | 'system'
 
@@ -18,21 +18,21 @@ export default function ThemeSelector({
         className={`px-3 py-1 rounded transition-colors ${theme === 'light' ? 'bg-gray-800 dark:bg-gray-200 text-white dark:text-black' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`}
         aria-label="Light theme"
       >
-        <Sun size={18} />
+        <SunIcon className="h-5 w-5" />
       </button>
       <button
         onClick={() => setTheme('dark')}
         className={`px-3 py-1 rounded transition-colors ${theme === 'dark' ? 'bg-gray-800 dark:bg-gray-200 text-white dark:text-black' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`}
         aria-label="Dark theme"
       >
-        <Moon size={18} />
+        <MoonIcon className="h-5 w-5" />
       </button>
       <button
         onClick={() => setTheme('system')}
         className={`px-3 py-1 rounded transition-colors ${theme === 'system' ? 'bg-gray-800 dark:bg-gray-200 text-white dark:text-black' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`}
         aria-label="System theme"
       >
-        <Monitor size={18} />
+        <ComputerDesktopIcon className="h-5 w-5" />
       </button>
     </div>
   )

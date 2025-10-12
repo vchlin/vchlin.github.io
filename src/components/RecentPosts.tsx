@@ -30,18 +30,23 @@ export default function RecentPosts() {
       date: "September 8, 2025",
       excerpt: "WIP"
     },
+    {
+      title: "Coming Soon",
+      date: "August 21, 2025",
+      excerpt: "WIP"
+    },
   ]
 
   return (
-    <section className="mb-20">
-      <h3 className="text-2xl font-semibold mb-6">Recent Posts</h3>
+    <div>
+      <h2 className="text-3xl font-bold mb-6">Blog</h2>
       <div className="space-y-6">
         {posts.map((post, index) => (
           <article
             key={index}
             className="border-l-2 border-gray-300 dark:border-gray-700 pl-4 hover:border-gray-500 dark:hover:border-gray-500 transition-colors"
           >
-            <h4 className="text-lg font-medium mb-1">{post.title}</h4>
+            <h3 className="text-lg font-medium mb-1">{post.title}</h3>
             <p className="text-gray-500 dark:text-gray-500 text-sm mb-2">
               {post.date}
             </p>
@@ -51,6 +56,6 @@ export default function RecentPosts() {
           </article>
         ))}
       </div>
-    </section>
+    </div>
   )
 }
