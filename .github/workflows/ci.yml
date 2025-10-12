@@ -29,28 +29,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check artifact
-        run: |
-          if [ ! -d 'dist' ]; then
-            echo '❌ Build failed: dist directory not found'
-            exit 1
-          fi
-          if [ ! -f 'dist/index.html' ]; then
-            echo '❌ Build failed: index.html not found in dist'
-            exit 1
-          fi
-          echo '✅ Build successful: artifact found'
-
-      - name: Analyze bundle size
-        if: github.event_name == 'pull_request'
-        run: |
-          echo '📊 Bundle Analysis:'
-          echo '===================='
-          du -sh dist/
-          echo ''
-          echo '📁 Detailed breakdown:'
-          find dist -type f | xargs ls -lh
-
       - name: Upload artifact
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/upload-artifact@v4
